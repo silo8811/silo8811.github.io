@@ -25,7 +25,7 @@
 
         #slideshow {
             position: relative;
-            max-width: 80%;
+            max-width: 40%; /* Reduce size by 75% */
             height: auto;
             margin: 50px auto;
         }
@@ -49,12 +49,15 @@
         }
 
         .text-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             color: #ffffff;
             padding: 10px;
-            font-size: 1.2em;
+            font-size: 1em;
             text-align: center;
-            margin-top: 10px;
             border-radius: 0 0 15px 15px;
         }
 
@@ -78,6 +81,25 @@
             right: 10px;
         }
 
+        .indicator {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
         @media only screen and (max-width: 600px) {
             #content {
                 font-size: 1.5em;
@@ -88,7 +110,7 @@
             }
 
             #slideshow {
-                max-width: 100%;
+                max-width: 90%; /* Fit on smaller screens */
             }
         }
     </style>
@@ -140,27 +162,59 @@
             <button class="nav-button next" onclick="plusSlides(1)">&#10095;</button>
         </div>
 
+        <div class="indicator">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
+        </div>
+
         <script>
             let slideIndex = 0;
+            let timer; // Timer for auto-slide
             showSlides(slideIndex);
 
             function plusSlides(n) {
+                resetTimer();
                 showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                resetTimer();
+                showSlides(slideIndex = n - 1);
             }
 
             function showSlides(n) {
                 let slides = document.getElementsByClassName("slide");
+                let dots = document.getElementsByClassName("dot");
+
                 if (n >= slides.length) { slideIndex = 0; }
                 if (n < 0) { slideIndex = slides.length - 1; }
+
                 for (let i = 0; i < slides.length; i++) {
                     slides[i].style.display = "none";
                 }
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+
                 slides[slideIndex].style.display = "block";
+                dots[slideIndex].className += " active";
             }
 
-            setInterval(function() {
-                plusSlides(1);
-            }, 3000); //3s
+            function resetTimer() {
+                clearInterval(timer);
+                timer = setInterval(function() {
+                    plusSlides(1);
+                }, 3000); // Reset timer and auto-slide every 3 seconds
+            }
+
+            // Initial timer setup
+            resetTimer();
         </script>
     </body>
 </html>
