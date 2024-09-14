@@ -185,7 +185,7 @@
             }
 
             function currentSlide(n) {
-                resetTimer();
+                resetTimer1();
                 showSlides(slideIndex = n - 1);
             }
 
@@ -212,6 +212,12 @@
                 timer = setInterval(function() {
                     plusSlides(1);
                 }, 3000); //3s
+            }
+            function resetTimer1() {
+                clearInterval(timer);
+                timer = setInterval(function() {
+                    plusSlides(1);
+                }, 20000); //3s
             }
 
             resetTimer();
