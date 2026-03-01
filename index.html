@@ -61,6 +61,21 @@
             border-radius: 0 0 15px 15px;
         }
 
+      div3 { 
+            padding: 60px;
+            text-wrap: stable;
+            text-align: center;
+      }
+      
+      h2 {
+            padding-left: 30px;
+            text-wrap: balance;
+            text-align: center;
+      }
+      h3 {
+            padding-left: 30px;
+            text-align: center;
+      }
         .nav-button {
             position: absolute;
             top: 50%;
@@ -124,7 +139,16 @@
             Subscribe to my YouTube channel:&nbsp;
             <a href='https://www.youtube.com/channel/UC1skqJzvurA0qwM13zzfzdA?sub_confirmation=1' target='_blank'>Here</a>
         </div>
-
+      
+      <div2>
+        <h2>
+          Current favourite quote:
+        </h2>
+        <div3>"If someone points out to you that your pet theory of the universe is in disagreement with Maxwell's equations, then so much the worse for Maxwell's equations. If it is found to be contradicted by observation, well these experimentalists do bungle things sometimes. But if your theory is found to be against the second law of thermodynamics, I can give you no hope.  There is nothing for it but to collapse in deepest humiliation."</div3>
+        <h3>
+          -Arthur Eddington.
+        </h3>
+      </div2>
         <div id="slideshow">
             <div class="slide">
                 <img src="1.jpg" alt="A cute cat sitting in a red chair almost like a human">
@@ -173,7 +197,6 @@
             <span class="dot" onclick="currentSlide(7)"></span>
             <span class="dot" onclick="currentSlide(8)"></span>
         </div>
-
         <script>
             let slideIndex = 0;
             let timer;
